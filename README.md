@@ -8,7 +8,8 @@
 
 - purpose
 
-to get the barcode information from Image files
+to get the barcode information from Image files and
+    to make barcode included documnet 
 
 
 - opensource libraries used in this program and Licenses
