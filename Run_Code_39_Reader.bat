@@ -1,0 +1,1 @@
+Java -jar ./dist/JavaApplication_Code39_Read.jar
