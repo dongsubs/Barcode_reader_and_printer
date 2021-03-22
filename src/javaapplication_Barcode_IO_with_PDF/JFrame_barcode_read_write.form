@@ -71,12 +71,12 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="print"/>
+            <Property name="text" type="java.lang.String" value="Output"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_qr">
               <Properties>
-                <Property name="text" type="java.lang.String" value="qr"/>
+                <Property name="text" type="java.lang.String" value="Open case txt"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_qrActionPerformed"/>

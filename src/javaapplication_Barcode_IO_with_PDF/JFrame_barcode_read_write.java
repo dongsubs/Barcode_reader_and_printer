@@ -257,9 +257,9 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
 
             jMenuBar1.add(jMenu1);
 
-            jMenu2.setText("print");
+            jMenu2.setText("Output");
 
-            jMenuItem_qr.setText("qr");
+            jMenuItem_qr.setText("Open case txt");
             jMenuItem_qr.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jMenuItem_qrActionPerformed(evt);
@@ -592,7 +592,7 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem_Extract_Barcode39_from_Complex_Barcode_ImagesActionPerformed
 
     private void jMenuItem_Copy_Images_with_Extratced_Barcode39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_Copy_Images_with_Extratced_Barcode39ActionPerformed
-    Read_Single_Barcode39_and_Save_to_Sub_Folder();
+        Read_Single_Barcode39_and_Save_to_Sub_Folder();
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem_Copy_Images_with_Extratced_Barcode39ActionPerformed
 
@@ -604,9 +604,24 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
 
     private void jMenuItem_qrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_qrActionPerformed
         // TODO add your handling code here:
-        pdf_io_obg.add_qr_to_PDF();
+        
+         
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("text files", "txt");
+        chooser.setMultiSelectionEnabled(true);
+        File Null_Folder = new File(this.jTextField_Current_Path.getText());
+        
+        chooser.setCurrentDirectory( Null_Folder );
+         chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(this);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            File[] Selected_Files = chooser.getSelectedFiles();
+            for (File each_file : Selected_Files){
+                
+            }
+            pdf_io_obg.add_qr_to_PDF();
     }//GEN-LAST:event_jMenuItem_qrActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
