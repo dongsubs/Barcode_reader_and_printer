@@ -27,7 +27,7 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
      */
     Text_File_IO Text_File_IO_Object = new Text_File_IO();
     Barcode_read_write Barcode_Read_Object = new Barcode_read_write();
-
+    PDF_IO pdf_io_obg = new PDF_IO();
     
      
     public JFrame_barcode_read_write() {
@@ -94,6 +94,7 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         Original_Image_File_Names_Text_Area = new javax.swing.JTextArea();
         jTextField_Current_Path = new javax.swing.JTextField();
@@ -129,8 +130,12 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         jMenuItem_Extract_Barcode_39_from_Single_data_Image_Files = new javax.swing.JMenuItem();
         jMenuItem_Copy_Images_with_Extratced_Barcode39 = new javax.swing.JMenuItem();
         jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem_qr = new javax.swing.JMenuItem();
         Information = new javax.swing.JMenu();
         About_This = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Barcode Reader for Picture");
@@ -251,6 +256,18 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
             jMenu1.add(jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images);
 
             jMenuBar1.add(jMenu1);
+
+            jMenu2.setText("print");
+
+            jMenuItem_qr.setText("qr");
+            jMenuItem_qr.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem_qrActionPerformed(evt);
+                }
+            });
+            jMenu2.add(jMenuItem_qr);
+
+            jMenuBar1.add(jMenu2);
 
             Information.setText("Information");
 
@@ -585,6 +602,11 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_About_ThisActionPerformed
 
+    private void jMenuItem_qrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_qrActionPerformed
+        // TODO add your handling code here:
+        pdf_io_obg.add_qr_to_PDF();
+    }//GEN-LAST:event_jMenuItem_qrActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -643,13 +665,16 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem_Copy_Images_with_Extratced_Barcode39;
     private javax.swing.JMenuItem jMenuItem_Exit_Program;
     private javax.swing.JMenuItem jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images;
     private javax.swing.JMenuItem jMenuItem_Extract_Barcode_39_from_Single_data_Image_Files;
     private javax.swing.JMenuItem jMenuItem_Save_Config;
+    private javax.swing.JMenuItem jMenuItem_qr;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField_Current_Path;

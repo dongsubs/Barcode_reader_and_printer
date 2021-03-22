@@ -20,6 +20,7 @@ import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.*;
 import com.google.zxing.oned.OneDReader;
 import com.google.zxing.oned.Code39Reader;
+import com.google.zxing.oned.Code39Writer;
 import com.google.zxing.LuminanceSource;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.NotFoundException;
@@ -428,6 +429,16 @@ public class Barcode_read_write {
         BufferedImage qr_buff_img = MatrixToImageWriter.toBufferedImage(qr_bit_image);
         return qr_buff_img;
     }
+    
+    public BufferedImage generate_code_39_buff_img(String text, int width, int height)
+            throws WriterException, IOException {
+        
+        Code39Writer code_39_writer = new Code39Writer();
+        BitMatrix qr_bit_image = code_39_writer.encode(text, BarcodeFormat.CODE_39, width, height);
+        BufferedImage qr_buff_img = MatrixToImageWriter.toBufferedImage(qr_bit_image);
+        return qr_buff_img;
+    }
+    
   public BitMatrix generate_QR_Code_bitmat_img(String text, int width, int height)
             throws WriterException, IOException {
         
