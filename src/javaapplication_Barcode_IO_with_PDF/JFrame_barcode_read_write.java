@@ -605,23 +605,28 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     private void jMenuItem_qrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_qrActionPerformed
         // TODO add your handling code here:
         
+  //      pdf_io_obg.add_qr_to_PDF();
          
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("text files", "txt");
         chooser.setMultiSelectionEnabled(true);
         File Null_Folder = new File(this.jTextField_Current_Path.getText());
-        
         chooser.setCurrentDirectory( Null_Folder );
-         chooser.setFileFilter(filter);
+        chooser.setFileFilter(filter);
         int returnVal = chooser.showOpenDialog(this);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             File[] Selected_Files = chooser.getSelectedFiles();
             for (File each_file : Selected_Files){
-                
+                 pdf_io_obg.get_infor_from_each_text_file( each_file);
             }
             pdf_io_obg.add_qr_to_PDF();
     }//GEN-LAST:event_jMenuItem_qrActionPerformed
     }
+   
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */

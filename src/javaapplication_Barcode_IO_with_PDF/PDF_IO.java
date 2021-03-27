@@ -15,11 +15,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.*;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.*;
 import org.apache.pdfbox.pdmodel.graphics.image.JPEGFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
@@ -34,14 +36,17 @@ float a4_landscap_height = PDRectangle.A4.getWidth();
 int code_39_width = 40, code_39_height=20;
 int margin = 50;
 int qr_size = 100;
-float hor_distance = (int) a4_landscap_width/3 - qr_size/3 ;
+int text_size = 15;
+float text_ver_size= 20;
+
+float hor_distance = (int) a4_landscap_width/3 - qr_size/3 -23;
 float ver_distance = (int) a4_landscap_height/2 - qr_size/2;
 
-ArrayList <String>  case_number = new ArrayList<>();
-ArrayList <String>  evidence_number = new ArrayList<>();
-ArrayList <String>  evidence_name = new ArrayList<>();
-ArrayList <String>  request_org = new ArrayList<>();
-ArrayList <Integer> related_person = new ArrayList<>();
+public ArrayList <String>  case_number = new ArrayList<>();
+public ArrayList <String>  evidence_number = new ArrayList<>();
+public ArrayList <String>  evidence_name = new ArrayList<>();
+public ArrayList <String>  request_org = new ArrayList<>();
+public ArrayList <String> related_person = new ArrayList<>();
 
 PDImageXObject code_39_bit_img = null, qr_bit_img=null;
     
@@ -49,7 +54,7 @@ private void add_code_39_img_to_pdf(  String input_str, int width, int height, i
     try{
         BufferedImage new_qr_bit_mat = Barcode_IO.generate_code_39_buff_img(input_str, width,  height);
         PDImageXObject qr_bit_img =  JPEGFactory.createFromImage(pdf_doc, new_qr_bit_mat);
-       pdf_cont_strm.drawImage(qr_bit_img, pos_x, pos_y);
+        pdf_cont_strm.drawImage(qr_bit_img, pos_x, pos_y);
     }
     catch(Exception e){
         e.printStackTrace();
@@ -60,19 +65,53 @@ private void add_qr_img_to_pdf( String input_str, int width, int height, int pos
     try{
         BufferedImage new_qr_bit_mat = Barcode_IO.generate_QR_Code_buff_img(input_str, width,  height);
         PDImageXObject qr_bit_img =  JPEGFactory.createFromImage(pdf_doc, new_qr_bit_mat);
-       pdf_cont_strm.drawImage(qr_bit_img, pos_x, pos_y);
+        pdf_cont_strm.drawImage(qr_bit_img, pos_x, pos_y);
     }
     catch(Exception e){
         e.printStackTrace();
     }
 }
 
-private void add_each_inf( int input_number){
+
+private void add_str_to_pdf(String input_str,  int pos_x, int pos_y){
+    try{
+        pdf_cont_strm.beginText();
+        pdf_cont_strm.newLineAtOffset(pos_x, pos_y);
+        pdf_cont_strm.showText(input_str);
+        pdf_cont_strm.endText();
+    }
+    catch(Exception e){
+        e.printStackTrace();
+    }
+}
+
+
+private void add_each_inf( int input_number) throws IOException{
    int remain_number = input_number % 6;
    int hor_step = remain_number % 3, ver_step = remain_number / 3 ;
-
-   String comb_evi_num= case_number.get(input_number); //+ "-" + evidence_number.get(input_number);
-   add_qr_img_to_pdf(comb_evi_num, qr_size, qr_size,(int) hor_distance*hor_step+margin+code_39_width,(int) a4_landscap_height- (int)ver_distance*ver_step-margin-code_39_height-qr_size);
+   
+   String comb_evi_num= case_number.get(input_number) + "-" + evidence_number.get(input_number);
+   int hor_pos = (int) hor_distance*hor_step+margin+code_39_width;
+   int ver_pos = (int) a4_landscap_height- (int)ver_distance*ver_step-margin-code_39_height;
+   add_qr_img_to_pdf(comb_evi_num, qr_size, qr_size,hor_pos,ver_pos-qr_size);
+   
+   InputStream font_stream = new FileInputStream("C:/Windows/Fonts/Malgun.ttf");
+   PDType0Font font_batang=   PDType0Font.load(pdf_doc, font_stream, true);
+//   PDFont font_batang = PDType1Font.HELVETICA;  
+   pdf_cont_strm.setFont(font_batang, text_size); 
+   pdf_cont_strm.beginText();
+   pdf_cont_strm.newLineAtOffset( hor_pos + qr_size, ver_pos-text_size);
+   pdf_cont_strm.setLeading(text_ver_size);
+   pdf_cont_strm.newLine();
+   pdf_cont_strm.showText(request_org.get(input_number))  ;
+   pdf_cont_strm.newLine();
+   pdf_cont_strm.showText(comb_evi_num)  ;
+   pdf_cont_strm.newLine();
+   pdf_cont_strm.showText(evidence_name.get(input_number))  ;
+   pdf_cont_strm.newLine();
+   pdf_cont_strm.showText(related_person.get(input_number))  ;
+   pdf_cont_strm.newLine();
+   pdf_cont_strm.endText();
 }
 
 private void initialize_pdf_new_page(){
@@ -98,20 +137,49 @@ private void initialize_pdf_new_page(){
   
 }
 
+
+ 
+    public void get_infor_from_each_text_file(File each_file){
+     
+     String Each_Line="";
+            try {
+  
+            FileReader Text_File_Reader = new FileReader(each_file.getPath());
+            BufferedReader Text_Buffered_Reader = new BufferedReader (Text_File_Reader);
+            
+            while ( (Each_Line = Text_Buffered_Reader.readLine()) != null ){
+                String[] Splited_Each_Line= Each_Line.split(";;");
+                if(Splited_Each_Line[0].equals("case_number") ){
+                    case_number.add(Splited_Each_Line[1]);
+                }
+                if(Splited_Each_Line[0].equals("evidence_number") ) {
+                    evidence_number.add(Splited_Each_Line[1]);
+                }
+                if(Splited_Each_Line[0].equals("evidence_name" )){
+                    evidence_name.add(Splited_Each_Line[1]);
+                }
+                if(Splited_Each_Line[0].equals("request_org")){
+                    request_org.add(Splited_Each_Line[1]);
+                }
+                if(Splited_Each_Line[0].equals("related_person")){
+                    related_person.add(Splited_Each_Line[1]);
+                }
+               
+           }
+       
+     //       System.out.print(Column_Count_of_Image);
+            Text_File_Reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+             }
+            
+    }
+
+    
 public  void add_qr_to_PDF(){
  
-   // Creating PDF document object 
-   case_number.add("a");
-   case_number.add("b");
-   case_number.add("c");
-   case_number.add("d");
-   case_number.add("e");
-   case_number.add("f");
-   case_number.add("g");
-   case_number.add("h");
-   case_number.add("i");
-   case_number.add("j");
-   String myPDF = "d:/test/barcode_doc.pdf";
+
+  String myPDF = "d:/test/barcode_doc.pdf";
    try{
         for (int current_number=0 ; current_number<case_number.size() ; current_number++){
             if (current_number% 6 ==0){
