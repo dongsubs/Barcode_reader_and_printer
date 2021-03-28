@@ -1,0 +1,1 @@
+Java -jar ./dist/Barcode_reader_and_printer.jar
