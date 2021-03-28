@@ -4,7 +4,7 @@ Horizontal_Precision_Step;3
 Column_Count_of_Image;3
 Row_Count_of_Image;2
 Horizontal_Gap;0
-Vertical_Gap;0.05
+Vertical_Gap;0
 Margin_Quality;3
 Sub_Image_Surplus_Horizontal;0.05
-Sub_Image_Surplus_Vertical;0.05
+Sub_Image_Surplus_Vertical;0.1

@@ -24,7 +24,7 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.*;
 import org.apache.pdfbox.pdmodel.graphics.image.JPEGFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-
+import org.apache.pdfbox.tools.PrintPDF;
 public class PDF_IO {
     
 
@@ -33,14 +33,14 @@ PDDocument pdf_doc = new PDDocument();
 PDPageContentStream pdf_cont_strm =null;
 float a4_landscap_width = PDRectangle.A4.getHeight();
 float a4_landscap_height = PDRectangle.A4.getWidth();
-int code_39_width = 40, code_39_height=20;
+int code_39_width = 60, code_39_height=30;
 int margin = 10;
 int qr_size = 100;
 int text_size = 15;
 float text_ver_size= 20;
 
-float hor_distance = (int) a4_landscap_width/3 - qr_size/3 -5;
-float ver_distance = (int) a4_landscap_height/2 - qr_size/2+20;
+float hor_distance = (int) a4_landscap_width/3 ;
+float ver_distance = (int) (a4_landscap_height-margin*2-code_39_height*2)/2;
 
 public ArrayList <String>  case_number = new ArrayList<>();
 public ArrayList <String>  evidence_number = new ArrayList<>();
@@ -94,11 +94,11 @@ private void draw_guide_lines() throws IOException{
     pdf_cont_strm.moveTo(0, margin+code_39_height+2);
     pdf_cont_strm.lineTo(a4_landscap_width, margin+code_39_height+2);
     pdf_cont_strm.stroke();
-    pdf_cont_strm.moveTo(hor_distance+margin+code_39_width-2, 0);
-    pdf_cont_strm.lineTo(hor_distance+margin+code_39_width-2, a4_landscap_height);
+    pdf_cont_strm.moveTo(margin+hor_distance-10, 0);
+    pdf_cont_strm.lineTo(margin+hor_distance-10, a4_landscap_height);
     pdf_cont_strm.stroke();
-    pdf_cont_strm.moveTo(hor_distance*2+margin+code_39_width-2, 0);
-    pdf_cont_strm.lineTo(hor_distance*2+margin+code_39_width-2, a4_landscap_height);
+    pdf_cont_strm.moveTo(margin+hor_distance*2-10, 0);
+    pdf_cont_strm.lineTo(margin+hor_distance*2-10, a4_landscap_height);
     pdf_cont_strm.stroke();
    
 }
@@ -108,7 +108,7 @@ private void add_each_inf( int input_number) throws IOException{
    int hor_step = remain_number % 3, ver_step = remain_number / 3 ;
    
    String comb_evi_num= case_number.get(input_number) + "-" + evidence_number.get(input_number);
-   int hor_pos = (int) hor_distance*hor_step+margin+code_39_width;
+   int hor_pos = (int) hor_distance*hor_step+margin;
    int ver_pos = (int) a4_landscap_height- (int)ver_distance*ver_step-margin-code_39_height-5;
    add_qr_img_to_pdf(comb_evi_num, qr_size, qr_size,hor_pos,ver_pos-qr_size);
    
@@ -143,9 +143,9 @@ private void initialize_pdf_new_page(){
    // add QRCode 
    
    add_code_39_img_to_pdf("TL", code_39_width,  code_39_height, (int) margin ,(int) a4_landscap_height- code_39_height- margin);
-   add_code_39_img_to_pdf("TR", code_39_width,  code_39_height, (int) a4_landscap_width - margin- code_39_width*2,  (int) a4_landscap_height- code_39_height- margin);
+   add_code_39_img_to_pdf("TR", code_39_width,  code_39_height, (int) a4_landscap_width - margin- code_39_width-10,  (int) a4_landscap_height- code_39_height- margin);
    add_code_39_img_to_pdf("BL", code_39_width,  code_39_height, (int) margin, (int) margin);
-   add_code_39_img_to_pdf("BR", code_39_width,  code_39_height,(int) a4_landscap_width - margin-code_39_width*2,(int)margin);
+   add_code_39_img_to_pdf("BR", code_39_width,  code_39_height,(int) a4_landscap_width - margin-code_39_width-10,(int)margin);
    draw_guide_lines();
 
    
@@ -230,13 +230,10 @@ public  void add_qr_to_PDF(){
   
    
    // Saving the document
-   
- 
- 
- 
-   
  
 }
-    
+ public void print_barcode_to_printer() throws IOException{
+   
+ }
 
 }

@@ -59,18 +59,22 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_Copy_Images_with_Extratced_Barcode39ActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_QR_decode">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Extract Data from images with QR"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_QR_decodeActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Extract Data from Images with Complex Barcodes"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_Extract_Barcode39_from_Complex_Barcode_ImagesActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem2"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -81,10 +85,19 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_qr">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Save as PDF"/>
+                <Property name="text" type="java.lang.String" value="Save Barcode as PDF"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_qrActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_print_barcode">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Print Barcode"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_print_barcodeActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

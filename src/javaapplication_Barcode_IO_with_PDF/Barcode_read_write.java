@@ -56,7 +56,7 @@ public class Barcode_read_write {
     public float Vertical_Gap;
     public float Sub_Image_Surplus_Horizontal;
     public float Sub_Image_Surplus_Vertical;
-
+    public String decoded_evi_num_list="";
     public int Margin_Quality;
     
     
@@ -267,7 +267,6 @@ public class Barcode_read_write {
             Barcode_Text = Barcode_Text + "-";
         }
         String File_Name_to_Save = Sub_Folder_String_to_Save + "/" + Barcode_Text  + File_Name  + "_Sub_Image_x" + Integer.toString(Current_Column) + "_y" + Integer.toString(Current_Row) + ".jpg";
-        
         ImageIO.write(Splited_Image[Current_Row][Current_Column], "jpg",new File(File_Name_to_Save));
         }
         catch(IOException e){
@@ -277,6 +276,63 @@ public class Barcode_read_write {
   
     }
     
+    public void Save_Splited_Images_with_QR_infor(File File_to_Split, int Row_Count, int Column_Count){
+    String   File_Path = File_to_Split.getPath();
+    String   File_Parent= File_to_Split.getParent();
+    String   File_Name = File_to_Split.getName();
+    BufferedImage Original_Image = null;
+    BufferedImage[][] Splited_Image = new BufferedImage[Row_Count][Column_Count]; 
+    
+    int Total_Image_Height = Bottom_Margin - Top_Margin;
+    int Total_Image_Width = Right_Margin - Left_Margin;
+    int Unit_Height = Total_Image_Height / Row_Count;
+    int Unit_Width = Total_Image_Width / Column_Count;
+    int Unit_Surplus_Width = (int) (Unit_Width * Sub_Image_Surplus_Horizontal);
+    int Unit_Surplus_Height = (int) (Unit_Height * Sub_Image_Surplus_Vertical);
+    int Current_Left_Location=0;
+    int Current_Top_Location=0;
+    int Current_Width = 0;
+    int Current_Height = 0;
+    
+    try{
+        Original_Image = ImageIO.read(File_to_Split);
+        Original_Image = Original_Image.getSubimage(Left_Margin, Top_Margin, Total_Image_Width,  Total_Image_Height);
+    }
+    catch(IOException e){
+    }
+    for(int Current_Row=0 ; Current_Row < Row_Count; Current_Row++){
+        for(int Current_Column=0 ; Current_Column< Column_Count; Current_Column++){
+  
+        Current_Left_Location = (Unit_Width*Current_Column) - Unit_Surplus_Width;
+        Current_Top_Location = (Unit_Height*Current_Row) - Unit_Surplus_Height;
+        Current_Width = Unit_Width + Unit_Surplus_Width;
+        Current_Height = Unit_Height + Unit_Surplus_Height;
+        
+        if (Current_Left_Location<0) {Current_Left_Location=0;}
+        if (Current_Top_Location<0) {Current_Top_Location=0;}
+        if (Current_Left_Location+Current_Width>Total_Image_Width) {Current_Width=Unit_Width;}
+        if (Current_Top_Location+Current_Height>Total_Image_Height) {Current_Height=Unit_Height;}
+        
+        try{
+        Splited_Image[Current_Row][Current_Column] = Original_Image.getSubimage(Current_Left_Location,Current_Top_Location, Current_Width, Current_Height);
+        
+        String Barcode_Text= Get_QR_code_text_from_Sub_Image(Splited_Image[Current_Row][Current_Column]);
+        if (!Barcode_Text.equals("")){
+            decoded_evi_num_list=decoded_evi_num_list + Barcode_Text +"\n";
+            Barcode_Text = Barcode_Text + "-";
+        }
+
+        String File_Name_to_Save = Sub_Folder_String_to_Save + "/" + Barcode_Text+ "_x" + Integer.toString(Current_Column) + "_y" + Integer.toString(Current_Row)  + File_Name   ;
+        
+        ImageIO.write(Splited_Image[Current_Row][Current_Column], "jpg",new File(File_Name_to_Save));
+        } 
+        catch(IOException e){
+        }
+        }
+    }
+  
+    }
+
     public  String Get_Barcode_text(String File_to_Decode) throws IOException {
     
     BinaryBitmap Original_Image = Get_Image_From_File(File_to_Decode);

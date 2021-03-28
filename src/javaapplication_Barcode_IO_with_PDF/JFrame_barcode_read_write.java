@@ -13,9 +13,6 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 //import java.text.SimpleDateFormat;
 
-
-
-
 /**
  *
  * @author user
@@ -129,10 +126,11 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem_Extract_Barcode_39_from_Single_data_Image_Files = new javax.swing.JMenuItem();
         jMenuItem_Copy_Images_with_Extratced_Barcode39 = new javax.swing.JMenuItem();
+        jMenuItem_QR_decode = new javax.swing.JMenuItem();
         jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem_qr = new javax.swing.JMenuItem();
+        jMenuItem_print_barcode = new javax.swing.JMenuItem();
         Information = new javax.swing.JMenu();
         About_This = new javax.swing.JMenuItem();
 
@@ -248,7 +246,16 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
             });
             jMenu1.add(jMenuItem_Copy_Images_with_Extratced_Barcode39);
 
+            jMenuItem_QR_decode.setText("Extract Data from images with QR");
+            jMenuItem_QR_decode.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem_QR_decodeActionPerformed(evt);
+                }
+            });
+            jMenu1.add(jMenuItem_QR_decode);
+
             jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images.setText("Extract Data from Images with Complex Barcodes");
+            jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images.setEnabled(false);
             jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jMenuItem_Extract_Barcode39_from_Complex_Barcode_ImagesActionPerformed(evt);
@@ -256,20 +263,26 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
             });
             jMenu1.add(jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images);
 
-            jMenuItem2.setText("jMenuItem2");
-            jMenu1.add(jMenuItem2);
-
             jMenuBar1.add(jMenu1);
 
             jMenu2.setText("Output");
 
-            jMenuItem_qr.setText("Save as PDF");
+            jMenuItem_qr.setText("Save Barcode as PDF");
             jMenuItem_qr.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jMenuItem_qrActionPerformed(evt);
                 }
             });
             jMenu2.add(jMenuItem_qr);
+
+            jMenuItem_print_barcode.setText("Print Barcode");
+            jMenuItem_print_barcode.setEnabled(false);
+            jMenuItem_print_barcode.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem_print_barcodeActionPerformed(evt);
+                }
+            });
+            jMenu2.add(jMenuItem_print_barcode);
 
             jMenuBar1.add(jMenu2);
 
@@ -431,8 +444,7 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
-  
-    private void Read_Complex_Barcode_Image_Files(){
+   private void Read_Complex_Barcode_Image_Files(){
     
     boolean Barcode_Result= false;
  
@@ -468,6 +480,49 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     }
     new End_Message_Box().setVisible(true);
     }
+    }
+    
+    private void Read_Complex_Barcode_Image_Files_with_QR_Code(){
+    
+    boolean Barcode_Result= false;
+    String selected_file_list="";
+    String Row_Count_String = this.TextField_Row_Count_in_Image.getText();
+    String Column_Count_String = this.TextField_Column_Count_in_Image.getText();
+    int Row_Count = Integer.parseInt(Row_Count_String);
+    int Column_Count = Integer.parseInt(Column_Count_String);
+    
+    JFileChooser chooser = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+        "JPG & GIF Images", "jpg", "gif");
+    chooser.setMultiSelectionEnabled(true);
+    File Null_Folder = new File(this.jTextField_Current_Path.getText());
+        
+    chooser.setCurrentDirectory( Null_Folder );
+    chooser.setFileFilter(filter);
+    int returnVal = chooser.showOpenDialog(this);
+    if(returnVal == JFileChooser.APPROVE_OPTION) {
+    File[] Selected_Files = chooser.getSelectedFiles();
+    Barcode_Read_Object.Create_Today_Sub_Folder(Selected_Files[0]);
+ 
+    
+    for(File Each_File: Selected_Files){
+        selected_file_list=selected_file_list+Each_File+"\n";
+        try {
+            Barcode_Result=Barcode_Read_Object.Decode_Single_Image_with_Complex_Barcode(Each_File);
+            if( Barcode_Result == true ){
+                 Barcode_Read_Object.Save_Splited_Images_with_QR_infor( Each_File,  Row_Count,  Column_Count);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(JFrame_barcode_read_write.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        this.Original_Image_File_Names_Text_Area.setText(selected_file_list);
+        this.Converted_Image_File_Names_Text_Area.setText(Barcode_Read_Object.decoded_evi_num_list);  
+    new End_Message_Box().setVisible(true);
+    }
+    
+    
+    
     }
     
     private void Read_Single_Barcode39_and_Save_to_Sub_Folder(){
@@ -608,13 +663,6 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
 
     
     private void choose_to_open(){
-        
-    }
-    private void jMenuItem_qrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_qrActionPerformed
-        // TODO add your handling code here:
-        
-  //      pdf_io_obg.add_qr_to_PDF();
-        try{
         JFileChooser open_chooser = new JFileChooser();
         FileNameExtensionFilter text_filter = new FileNameExtensionFilter("text files", "txt");
         open_chooser.setMultiSelectionEnabled(true);
@@ -622,18 +670,21 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         open_chooser.setCurrentDirectory( Null_Folder );
         open_chooser.setFileFilter(text_filter);
         int open_returnVal = open_chooser.showOpenDialog(this);
-        if(open_returnVal == JFileChooser.APPROVE_OPTION) {
+        if(open_returnVal == JFileChooser.APPROVE_OPTION){   
             File[] Selected_Files = open_chooser.getSelectedFiles();
             for (File each_file : Selected_Files){
                  pdf_io_obg.get_infor_from_each_text_file( each_file);
             }
-            pdf_io_obg.add_qr_to_PDF();
-      
-    }//GEN-LAST:event_jMenuItem_qrActionPerformed
+             pdf_io_obg.add_qr_to_PDF(); 
+        }
+    }
+    
+    private void choose_to_save (){
+      try{
         JFileChooser save_chooser = new JFileChooser();
         FileNameExtensionFilter pdf_filter = new FileNameExtensionFilter("pdf files", "pdf");
         save_chooser.setMultiSelectionEnabled(false);
-//        File Null_Folder = new File(this.jTextField_Current_Path.getText());
+        File Null_Folder = new File(this.jTextField_Current_Path.getText());
         save_chooser.setCurrentDirectory( Null_Folder );
         save_chooser.setSelectedFile(new File("new_barcode.pdf"));
         save_chooser.setFileFilter(pdf_filter);
@@ -647,9 +698,28 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-   
     
     
+    private void jMenuItem_qrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_qrActionPerformed
+        choose_to_open();
+        choose_to_save();
+    }//GEN-LAST:event_jMenuItem_qrActionPerformed
+
+    private void jMenuItem_QR_decodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_QR_decodeActionPerformed
+        Init_Value();
+        Read_Complex_Barcode_Image_Files_with_QR_Code();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem_QR_decodeActionPerformed
+
+    private void jMenuItem_print_barcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_print_barcodeActionPerformed
+        choose_to_open();
+      //  pdf_io_obg.print_barcode_to_printer();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem_print_barcodeActionPerformed
+      
+  
+      
     
     
     /**
@@ -687,7 +757,9 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
             }
         });
     }
+      // TODO add your handling code here:
 
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem About_This;
     private javax.swing.JTextArea Converted_Image_File_Names_Text_Area;
@@ -714,12 +786,13 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem_Copy_Images_with_Extratced_Barcode39;
     private javax.swing.JMenuItem jMenuItem_Exit_Program;
     private javax.swing.JMenuItem jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images;
     private javax.swing.JMenuItem jMenuItem_Extract_Barcode_39_from_Single_data_Image_Files;
+    private javax.swing.JMenuItem jMenuItem_QR_decode;
     private javax.swing.JMenuItem jMenuItem_Save_Config;
+    private javax.swing.JMenuItem jMenuItem_print_barcode;
     private javax.swing.JMenuItem jMenuItem_qr;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -732,4 +805,6 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_Vertical_Gap;
     private javax.swing.JTextField jTextField_Vertical_Precision_Step;
     // End of variables declaration//GEN-END:variables
+
+  
 }
