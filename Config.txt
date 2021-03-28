@@ -1,4 +1,4 @@
-Current_Path_of_Image;C:\
+Current_Path_of_Image;d:
 Vertical_Precision_Step;30
 Horizontal_Precision_Step;3
 Column_Count_of_Image;3

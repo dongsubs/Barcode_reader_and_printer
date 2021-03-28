@@ -34,13 +34,13 @@ PDPageContentStream pdf_cont_strm =null;
 float a4_landscap_width = PDRectangle.A4.getHeight();
 float a4_landscap_height = PDRectangle.A4.getWidth();
 int code_39_width = 40, code_39_height=20;
-int margin = 50;
+int margin = 10;
 int qr_size = 100;
 int text_size = 15;
 float text_ver_size= 20;
 
-float hor_distance = (int) a4_landscap_width/3 - qr_size/3 -23;
-float ver_distance = (int) a4_landscap_height/2 - qr_size/2;
+float hor_distance = (int) a4_landscap_width/3 - qr_size/3 -5;
+float ver_distance = (int) a4_landscap_height/2 - qr_size/2+20;
 
 public ArrayList <String>  case_number = new ArrayList<>();
 public ArrayList <String>  evidence_number = new ArrayList<>();
@@ -84,7 +84,24 @@ private void add_str_to_pdf(String input_str,  int pos_x, int pos_y){
         e.printStackTrace();
     }
 }
-
+private void draw_guide_lines() throws IOException{
+    pdf_cont_strm.moveTo(0, a4_landscap_height-margin-code_39_height-2);
+    pdf_cont_strm.lineTo(a4_landscap_width, a4_landscap_height-margin-code_39_height-2);
+    pdf_cont_strm.stroke();
+    pdf_cont_strm.moveTo(0, a4_landscap_height/2);
+    pdf_cont_strm.lineTo(a4_landscap_width, a4_landscap_height/2);
+    pdf_cont_strm.stroke();
+    pdf_cont_strm.moveTo(0, margin+code_39_height+2);
+    pdf_cont_strm.lineTo(a4_landscap_width, margin+code_39_height+2);
+    pdf_cont_strm.stroke();
+    pdf_cont_strm.moveTo(hor_distance+margin+code_39_width-2, 0);
+    pdf_cont_strm.lineTo(hor_distance+margin+code_39_width-2, a4_landscap_height);
+    pdf_cont_strm.stroke();
+    pdf_cont_strm.moveTo(hor_distance*2+margin+code_39_width-2, 0);
+    pdf_cont_strm.lineTo(hor_distance*2+margin+code_39_width-2, a4_landscap_height);
+    pdf_cont_strm.stroke();
+   
+}
 
 private void add_each_inf( int input_number) throws IOException{
    int remain_number = input_number % 6;
@@ -92,7 +109,7 @@ private void add_each_inf( int input_number) throws IOException{
    
    String comb_evi_num= case_number.get(input_number) + "-" + evidence_number.get(input_number);
    int hor_pos = (int) hor_distance*hor_step+margin+code_39_width;
-   int ver_pos = (int) a4_landscap_height- (int)ver_distance*ver_step-margin-code_39_height;
+   int ver_pos = (int) a4_landscap_height- (int)ver_distance*ver_step-margin-code_39_height-5;
    add_qr_img_to_pdf(comb_evi_num, qr_size, qr_size,hor_pos,ver_pos-qr_size);
    
    InputStream font_stream = new FileInputStream("C:/Windows/Fonts/Malgun.ttf");
@@ -126,9 +143,11 @@ private void initialize_pdf_new_page(){
    // add QRCode 
    
    add_code_39_img_to_pdf("TL", code_39_width,  code_39_height, (int) margin ,(int) a4_landscap_height- code_39_height- margin);
-   add_code_39_img_to_pdf("TR", code_39_width,  code_39_height, (int) a4_landscap_width - margin- code_39_width,  (int) a4_landscap_height- code_39_height- margin);
+   add_code_39_img_to_pdf("TR", code_39_width,  code_39_height, (int) a4_landscap_width - margin- code_39_width*2,  (int) a4_landscap_height- code_39_height- margin);
    add_code_39_img_to_pdf("BL", code_39_width,  code_39_height, (int) margin, (int) margin);
-   add_code_39_img_to_pdf("BR", code_39_width,  code_39_height,(int) a4_landscap_width - margin-code_39_width,(int)margin);
+   add_code_39_img_to_pdf("BR", code_39_width,  code_39_height,(int) a4_landscap_width - margin-code_39_width*2,(int)margin);
+   draw_guide_lines();
+
    
    } 
     catch (Exception e) {
@@ -146,23 +165,32 @@ private void initialize_pdf_new_page(){
   
             FileReader Text_File_Reader = new FileReader(each_file.getPath());
             BufferedReader Text_Buffered_Reader = new BufferedReader (Text_File_Reader);
-            
+            String text_title="";
+            String text_info= "";
+             
             while ( (Each_Line = Text_Buffered_Reader.readLine()) != null ){
                 String[] Splited_Each_Line= Each_Line.split(";;");
-                if(Splited_Each_Line[0].equals("case_number") ){
-                    case_number.add(Splited_Each_Line[1]);
+                 text_title= Splited_Each_Line[0];
+                if (Splited_Each_Line.length > 1) {
+                      text_info= Splited_Each_Line[1];
+                } else {
+                      text_info= "";
                 }
-                if(Splited_Each_Line[0].equals("evidence_number") ) {
-                    evidence_number.add(Splited_Each_Line[1]);
+               
+                if(text_title.equals("case_number") ){
+                    case_number.add(text_info);
                 }
-                if(Splited_Each_Line[0].equals("evidence_name" )){
-                    evidence_name.add(Splited_Each_Line[1]);
+                if(text_title.equals("evidence_number") ) {
+                    evidence_number.add(text_info);
                 }
-                if(Splited_Each_Line[0].equals("request_org")){
-                    request_org.add(Splited_Each_Line[1]);
+                if(text_title.equals("evidence_name" )){
+                    evidence_name.add(text_info);
                 }
-                if(Splited_Each_Line[0].equals("related_person")){
-                    related_person.add(Splited_Each_Line[1]);
+                if(text_title.equals("request_org")){
+                    request_org.add(text_info);
+                }
+                if(text_title.equals("related_person")){
+                    related_person.add(text_info);
                 }
                
            }
@@ -175,12 +203,15 @@ private void initialize_pdf_new_page(){
             
     }
 
+public void save_pdf_file(File input_file) throws IOException{
+  //String myPDF = "d:/test/barcode_doc.pdf";
+    pdf_doc.save(input_file.getPath());
+    pdf_doc.close(); 
+
+}
     
 public  void add_qr_to_PDF(){
- 
-
-  String myPDF = "d:/test/barcode_doc.pdf";
-   try{
+  try{
         for (int current_number=0 ; current_number<case_number.size() ; current_number++){
             if (current_number% 6 ==0){
                 if (current_number>0){
@@ -191,9 +222,8 @@ public  void add_qr_to_PDF(){
             add_each_inf(current_number);
         }
         pdf_cont_strm.close();
-        pdf_doc.save(myPDF);
+
    // Closing the document  
-        pdf_doc.close(); 
    } catch (Exception e) {
         e.printStackTrace();
     }

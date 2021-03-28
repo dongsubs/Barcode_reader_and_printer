@@ -130,6 +130,7 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         jMenuItem_Extract_Barcode_39_from_Single_data_Image_Files = new javax.swing.JMenuItem();
         jMenuItem_Copy_Images_with_Extratced_Barcode39 = new javax.swing.JMenuItem();
         jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem_qr = new javax.swing.JMenuItem();
         Information = new javax.swing.JMenu();
@@ -255,11 +256,14 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
             });
             jMenu1.add(jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images);
 
+            jMenuItem2.setText("jMenuItem2");
+            jMenu1.add(jMenuItem2);
+
             jMenuBar1.add(jMenu1);
 
             jMenu2.setText("Output");
 
-            jMenuItem_qr.setText("Open case txt");
+            jMenuItem_qr.setText("Save as PDF");
             jMenuItem_qr.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jMenuItem_qrActionPerformed(evt);
@@ -602,25 +606,46 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_About_ThisActionPerformed
 
+    
+    private void choose_to_open(){
+        
+    }
     private void jMenuItem_qrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_qrActionPerformed
         // TODO add your handling code here:
         
   //      pdf_io_obg.add_qr_to_PDF();
-         
-        JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("text files", "txt");
-        chooser.setMultiSelectionEnabled(true);
+        try{
+        JFileChooser open_chooser = new JFileChooser();
+        FileNameExtensionFilter text_filter = new FileNameExtensionFilter("text files", "txt");
+        open_chooser.setMultiSelectionEnabled(true);
         File Null_Folder = new File(this.jTextField_Current_Path.getText());
-        chooser.setCurrentDirectory( Null_Folder );
-        chooser.setFileFilter(filter);
-        int returnVal = chooser.showOpenDialog(this);
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
-            File[] Selected_Files = chooser.getSelectedFiles();
+        open_chooser.setCurrentDirectory( Null_Folder );
+        open_chooser.setFileFilter(text_filter);
+        int open_returnVal = open_chooser.showOpenDialog(this);
+        if(open_returnVal == JFileChooser.APPROVE_OPTION) {
+            File[] Selected_Files = open_chooser.getSelectedFiles();
             for (File each_file : Selected_Files){
                  pdf_io_obg.get_infor_from_each_text_file( each_file);
             }
             pdf_io_obg.add_qr_to_PDF();
+      
     }//GEN-LAST:event_jMenuItem_qrActionPerformed
+        JFileChooser save_chooser = new JFileChooser();
+        FileNameExtensionFilter pdf_filter = new FileNameExtensionFilter("pdf files", "pdf");
+        save_chooser.setMultiSelectionEnabled(false);
+//        File Null_Folder = new File(this.jTextField_Current_Path.getText());
+        save_chooser.setCurrentDirectory( Null_Folder );
+        save_chooser.setSelectedFile(new File("new_barcode.pdf"));
+        save_chooser.setFileFilter(pdf_filter);
+        int save_returnVal = save_chooser.showOpenDialog(this);
+        if(save_returnVal == JFileChooser.APPROVE_OPTION){
+            File seletec_save_file = save_chooser.getSelectedFile();
+                pdf_io_obg.save_pdf_file(seletec_save_file);
+            }
+        new End_Message_Box().setVisible(true);
+        } catch(IOException e){
+            e.printStackTrace();
+        }
     }
    
     
@@ -689,6 +714,7 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem_Copy_Images_with_Extratced_Barcode39;
     private javax.swing.JMenuItem jMenuItem_Exit_Program;
     private javax.swing.JMenuItem jMenuItem_Extract_Barcode39_from_Complex_Barcode_Images;

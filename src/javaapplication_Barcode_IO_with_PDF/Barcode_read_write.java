@@ -26,6 +26,7 @@ import com.google.zxing.BinaryBitmap;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.QRCodeReader;
 
 
 import java.awt.Image;
@@ -312,7 +313,24 @@ public class Barcode_read_write {
     return Read_Result;
     }  
   
+    private  String Get_QR_code_text_from_Sub_Image(BufferedImage Image_to_Decode) throws IOException {
+ 
+    LuminanceSource  source = new BufferedImageLuminanceSource(Image_to_Decode);
+    BinaryBitmap Original_Image = new BinaryBitmap(new HybridBinarizer(source));
+ 
+    String Read_Result="";
     
+    int Current_Height_Depth=1; 
+    QRCodeReader Sub_qr_reader = new QRCodeReader();
+    try {
+        Read_Result =   Sub_qr_reader.decode(Original_Image).getText();
+    } catch (NotFoundException  |   ChecksumException  | FormatException e) {
+        e.printStackTrace();
+    }
+    
+    return Read_Result;
+    }  
+  
     
     private  String Process_Each_Row_of_Image( int Current_Height_Depth, BinaryBitmap Original_Image){
     BinaryBitmap Croped_Image = null; 
