@@ -22,6 +22,8 @@ public class Text_File_IO {
     public String Margin_Quality;
     public String Sub_Image_Surplus_Horizontal;
     public String Sub_Image_Surplus_Vertical;
+    public String QR_Size, Font_Size;
+    
     
     public  void Write_Config_to_Text_FIle(){
         try {
@@ -47,6 +49,10 @@ public class Text_File_IO {
             Text_Buffered_Writer.write("Sub_Image_Surplus_Horizontal;" + Sub_Image_Surplus_Horizontal);
             Text_Buffered_Writer.newLine();
             Text_Buffered_Writer.write("Sub_Image_Surplus_Vertical;" + Sub_Image_Surplus_Vertical);
+            Text_Buffered_Writer.newLine();
+            Text_Buffered_Writer.write("QR_Size;" + QR_Size);
+            Text_Buffered_Writer.newLine();
+            Text_Buffered_Writer.write("Font_Size;" + Font_Size);
             Text_Buffered_Writer.newLine();
                        
             Text_Buffered_Writer.close();
@@ -97,7 +103,12 @@ public class Text_File_IO {
                  if(Splited_Each_Line[0].equals("Sub_Image_Surplus_Vertical")){
                     Sub_Image_Surplus_Vertical= Splited_Each_Line[1];
                 }
-               
+                 if(Splited_Each_Line[0].equals("QR_Size")){
+                    QR_Size= Splited_Each_Line[1];
+                }
+                 if(Splited_Each_Line[0].equals("Font_Size")){
+                    Font_Size= Splited_Each_Line[1];
+                }
            }
        
      //       System.out.print(Column_Count_of_Image);
@@ -109,10 +120,12 @@ public class Text_File_IO {
              Column_Count_of_Image = "3";
              Row_Count_of_Image   = "2";
              Horizontal_Gap = "0";
-             Vertical_Gap = "0.1";
+             Vertical_Gap = "0";
              Margin_Quality= "4";
              Sub_Image_Surplus_Horizontal="0.05";
-             Sub_Image_Surplus_Vertical="0.05";
+             Sub_Image_Surplus_Vertical="0.1";
+             QR_Size="80";
+             Font_Size="15";
             //e.printStackTrace();
              }
             

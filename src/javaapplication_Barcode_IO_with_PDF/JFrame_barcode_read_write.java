@@ -24,7 +24,6 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
      */
     Text_File_IO Text_File_IO_Object = new Text_File_IO();
     Barcode_read_write Barcode_Read_Object = new Barcode_read_write();
-    PDF_IO pdf_io_obg = new PDF_IO();
     
      
     public JFrame_barcode_read_write() {
@@ -46,6 +45,8 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         this.jTextField_Margin_Quality.setText(Text_File_IO_Object.Margin_Quality);
         this.jTextField_Sub_Image_Surplus_Horizontal.setText(Text_File_IO_Object.Sub_Image_Surplus_Horizontal);
         this.jTextField_Sub_Image_Surplus_Vertical.setText(Text_File_IO_Object.Sub_Image_Surplus_Vertical);
+        this.jTextField_QR_size.setText(Text_File_IO_Object.QR_Size);
+        this.jTextField_font_size.setText(Text_File_IO_Object.Font_Size);
     }
     
     private void Init_Value(){
@@ -64,7 +65,6 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         Barcode_Read_Object.Sub_Image_Surplus_Horizontal = Float.parseFloat(Sub_Image_Surplus_Horizontal_String);
         Barcode_Read_Object.Sub_Image_Surplus_Vertical = Float.parseFloat(Sub_Image_Surplus_Vertical_String);
         Barcode_Read_Object.Margin_Quality = Integer.parseInt(Margin_Quality);
-       
     }
     
      public void Get_Config_From_TextField(){
@@ -79,6 +79,8 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         Text_File_IO_Object.Margin_Quality = this.jTextField_Margin_Quality.getText();
         Text_File_IO_Object.Sub_Image_Surplus_Horizontal = this.jTextField_Sub_Image_Surplus_Horizontal.getText();
         Text_File_IO_Object.Sub_Image_Surplus_Vertical = this.jTextField_Sub_Image_Surplus_Vertical.getText();
+        Text_File_IO_Object.QR_Size=this.jTextField_QR_size.getText();
+        Text_File_IO_Object.Font_Size=this.jTextField_font_size.getText();
     }
     
     /**
@@ -119,6 +121,10 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jTextField_Sub_Image_Surplus_Horizontal = new javax.swing.JTextField();
         jTextField_Sub_Image_Surplus_Vertical = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField_QR_size = new javax.swing.JTextField();
+        jTextField_font_size = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem_Save_Config = new javax.swing.JMenuItem();
@@ -197,6 +203,14 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
             jTextField_Sub_Image_Surplus_Horizontal.setText("0.05");
 
             jTextField_Sub_Image_Surplus_Vertical.setText("0.05");
+
+            jLabel14.setText("QR size :");
+
+            jLabel15.setText("Font size :");
+
+            jTextField_QR_size.setText("80");
+
+            jTextField_font_size.setText("15");
 
             jMenu3.setText("Main");
 
@@ -360,17 +374,28 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel8)
-                                                .addComponent(jLabel5))
-                                            .addGap(25, 25, 25)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(TextField_Row_Count_in_Image, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                                                .addComponent(jTextField_Vertical_Gap)))
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel15))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(25, 25, 25)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(TextField_Row_Count_in_Image, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                                                        .addComponent(jTextField_Vertical_Gap)))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(29, 29, 29)
+                                                    .addComponent(jTextField_font_size, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(74, 74, 74)
                                             .addComponent(jLabel12)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(jTextField_Sub_Image_Surplus_Vertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addContainerGap(52, Short.MAX_VALUE))))
+                            .addContainerGap(52, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel14)
+                            .addGap(56, 56, 56)
+                            .addComponent(jTextField_QR_size, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,13 +437,19 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
                         .addComponent(jTextField_Margin_Quality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12)
                         .addComponent(jLabel13)
                         .addComponent(jTextField_Sub_Image_Surplus_Horizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField_Sub_Image_Surplus_Vertical, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(51, 51, 51))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14)
+                        .addComponent(jLabel15)
+                        .addComponent(jTextField_QR_size, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_font_size, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(15, 15, 15))
             );
 
             pack();
@@ -518,11 +549,9 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     }
         this.Original_Image_File_Names_Text_Area.setText(selected_file_list);
         this.Converted_Image_File_Names_Text_Area.setText(Barcode_Read_Object.decoded_evi_num_list);  
-    new End_Message_Box().setVisible(true);
+    
     }
-    
-    
-    
+   new End_Message_Box().setVisible(true);
     }
     
     private void Read_Single_Barcode39_and_Save_to_Sub_Folder(){
@@ -662,7 +691,18 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     }//GEN-LAST:event_About_ThisActionPerformed
 
     
-    private void choose_to_open(){
+    private void choose_to_open_save() throws IOException{
+        PDF_IO pdf_io_obg = new PDF_IO();
+   
+        pdf_io_obg.qr_size = Integer.parseInt(Text_File_IO_Object.QR_Size);
+        pdf_io_obg.font_size= Integer.parseInt(Text_File_IO_Object.Font_Size);
+        pdf_io_obg.text_ver_size = (int) pdf_io_obg.font_size * 3 / 2 ;
+
+        pdf_io_obg.Column_Count_of_Image=Integer.parseInt(Text_File_IO_Object.Column_Count_of_Image);
+        pdf_io_obg.Row_Count_of_Image= Integer.parseInt(Text_File_IO_Object.Row_Count_of_Image);
+        pdf_io_obg.hor_distance = (int) pdf_io_obg.a4_landscap_width/pdf_io_obg.Column_Count_of_Image;
+        pdf_io_obg.ver_distance = (int) (pdf_io_obg.a4_landscap_height-pdf_io_obg.margin*pdf_io_obg.Row_Count_of_Image-pdf_io_obg.code_39_height*pdf_io_obg.Row_Count_of_Image)/pdf_io_obg.Row_Count_of_Image;
+    
         JFileChooser open_chooser = new JFileChooser();
         FileNameExtensionFilter text_filter = new FileNameExtensionFilter("text files", "txt");
         open_chooser.setMultiSelectionEnabled(true);
@@ -673,14 +713,15 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         if(open_returnVal == JFileChooser.APPROVE_OPTION){   
             File[] Selected_Files = open_chooser.getSelectedFiles();
             for (File each_file : Selected_Files){
-                 pdf_io_obg.get_infor_from_each_text_file( each_file);
+                 pdf_io_obg.get_infor_from_each_text_file(each_file);
             }
-             pdf_io_obg.add_qr_to_PDF(); 
+             pdf_io_obg.add_qr_to_PDF(choose_to_save()); 
         }
+       
     }
     
-    private void choose_to_save (){
-      try{
+    private String choose_to_save () throws IOException {
+    String selected_file_name=null;
         JFileChooser save_chooser = new JFileChooser();
         FileNameExtensionFilter pdf_filter = new FileNameExtensionFilter("pdf files", "pdf");
         save_chooser.setMultiSelectionEnabled(false);
@@ -690,19 +731,24 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
         save_chooser.setFileFilter(pdf_filter);
         int save_returnVal = save_chooser.showOpenDialog(this);
         if(save_returnVal == JFileChooser.APPROVE_OPTION){
-            File seletec_save_file = save_chooser.getSelectedFile();
-                pdf_io_obg.save_pdf_file(seletec_save_file);
+            File seleted_save_file = save_chooser.getSelectedFile();
+            selected_file_name   = seleted_save_file.getPath();
             }
         new End_Message_Box().setVisible(true);
-        } catch(IOException e){
-            e.printStackTrace();
-        }
+      return selected_file_name;
     }
     
     
     private void jMenuItem_qrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_qrActionPerformed
-        choose_to_open();
-        choose_to_save();
+       Init_Value();
+       Get_Config_From_TextField();
+
+       try{
+            choose_to_open_save();
+       } catch(IOException e){
+           e.printStackTrace();
+       }
+       
     }//GEN-LAST:event_jMenuItem_qrActionPerformed
 
     private void jMenuItem_QR_decodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_QR_decodeActionPerformed
@@ -713,14 +759,12 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem_QR_decodeActionPerformed
 
     private void jMenuItem_print_barcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_print_barcodeActionPerformed
-        choose_to_open();
+        //choose_to_open();
       //  pdf_io_obg.print_barcode_to_printer();
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem_print_barcodeActionPerformed
       
   
-      
-    
     
     /**
      * @param args the command line arguments
@@ -773,6 +817,8 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -800,10 +846,12 @@ public class JFrame_barcode_read_write extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_Horizontal_Gap;
     private javax.swing.JTextField jTextField_Horizontal_Precision_Step;
     private javax.swing.JTextField jTextField_Margin_Quality;
+    private javax.swing.JTextField jTextField_QR_size;
     private javax.swing.JTextField jTextField_Sub_Image_Surplus_Horizontal;
     private javax.swing.JTextField jTextField_Sub_Image_Surplus_Vertical;
     private javax.swing.JTextField jTextField_Vertical_Gap;
     private javax.swing.JTextField jTextField_Vertical_Precision_Step;
+    private javax.swing.JTextField jTextField_font_size;
     // End of variables declaration//GEN-END:variables
 
   

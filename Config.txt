@@ -1,4 +1,4 @@
-Current_Path_of_Image;d:
+Current_Path_of_Image;c:
 Vertical_Precision_Step;30
 Horizontal_Precision_Step;3
 Column_Count_of_Image;3
@@ -8,3 +8,5 @@ Vertical_Gap;0
 Margin_Quality;3
 Sub_Image_Surplus_Horizontal;0.05
 Sub_Image_Surplus_Vertical;0.1
+QR_Size;85
+Font_Size;11
