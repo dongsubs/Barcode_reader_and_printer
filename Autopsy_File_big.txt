@@ -1,0 +1,373 @@
+case_number==2019-H-176
+evidence_name==증1호:소변(박주혁)
+request_org==서울중앙지방검찰청
+related_person==박주혁
+case_number==2019-H-180
+evidence_name==증1호:일회용 주사기
+request_org==경기도남부지방경찰청
+related_person==박용환
+case_number==2019-H-180
+evidence_name==증3호:피의자 박용환 구강키트
+request_org==경기도남부지방경찰청
+related_person==박용환
+case_number==2019-H-196
+evidence_name==증1호:변사자 김달해 양쪽 눈 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==김달해
+case_number==2019-H-196
+evidence_name==증2호:변사자 김달해 입술 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==김달해
+case_number==2019-H-196
+evidence_name==증3호:변사자 김달해 목 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==김달해
+case_number==2019-H-196
+evidence_name==증4호:변사자 김달해 유두 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==김달해
+case_number==2019-H-196
+evidence_name==증5호:변사자 김달해 양 손바닥 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==김달해
+case_number==2019-H-196
+evidence_name==증6-F호:변사자 김달해 질액 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==김달해
+case_number==2019-H-196
+evidence_name==증6-M호:변사자 김달해 질액 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==김달해
+case_number==2019-H-213
+evidence_name==증7호:일회용 주사기(증9호)
+request_org==서울특별시지방경찰청
+related_person==최민성
+case_number==2019-H-213
+evidence_name==증8호:일회용 주사기(증10호)
+request_org==서울특별시지방경찰청
+related_person==최민성
+case_number==2019-H-213
+evidence_name==증9호:일회용 주사기(증11호)
+request_org==서울특별시지방경찰청
+related_person==최민성
+case_number==2019-H-213
+evidence_name==증10호:일회용 주사기(증12호)
+request_org==서울특별시지방경찰청
+related_person==최민성
+case_number==2019-H-213
+evidence_name==증11호:일회용 주사기(증13호)
+request_org==서울특별시지방경찰청
+related_person==최민성
+case_number==2019-H-214
+evidence_name==증7호:빨대 조각(증21호)
+request_org==서울특별시지방경찰청
+related_person==최민성
+case_number==2019-H-214
+evidence_name==증8호:일회용 주사기(증22호)
+request_org==서울특별시지방경찰청
+related_person==최민성
+case_number==2019-H-214
+evidence_name==증9호:일회용 주사기(증23호)
+request_org==서울특별시지방경찰청
+related_person==최민성
+case_number==2019-H-214
+evidence_name==증10호:일회용 주사기(증24호)
+request_org==서울특별시지방경찰청
+related_person==최민성
+case_number==2019-H-214
+evidence_name==증13호:일회용 주사기(증27호)
+request_org==서울특별시지방경찰청
+related_person==최민성
+case_number==2019-H-236
+evidence_name==증1-1호:변사자 민승예의 사체 DNA
+request_org==인천남동경찰서
+related_person==김정미, 김정환, 민승예
+case_number==2019-H-236
+evidence_name==증1-2호:변사자 김정환의 사체 DNA
+request_org==인천남동경찰서
+related_person==김정미, 김정환, 민승예
+case_number==2019-H-245
+evidence_name==증1-1호:풍선 3점
+request_org==서울강남경찰서
+related_person==김유나
+case_number==2019-H-245
+evidence_name==증1-2호:풍선 3점
+request_org==서울강남경찰서
+related_person==김유나
+case_number==2019-H-245
+evidence_name==증1-3호:풍선 3점
+request_org==서울강남경찰서
+related_person==김유나
+case_number==2019-H-266
+evidence_name==증1호:에세체인지 담배케이스 표면 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==박종호
+case_number==2019-H-267
+evidence_name==증1호:변사자 박종호 경부 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==박종호
+case_number==2019-H-267
+evidence_name==증2호:변사자 박종호 좌수 손톱 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==박종호
+case_number==2019-H-267
+evidence_name==증3호:변사자 박종호 우수 손톱 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==박종호
+case_number==2019-H-270
+evidence_name==증1호:담배꽁초(Marlboro) 1점
+request_org==서울특별시지방경찰청
+related_person==김영호
+case_number==2019-H-270
+evidence_name==증2호:담배꽁초(Marlboro) 1점
+request_org==서울특별시지방경찰청
+related_person==김영호
+case_number==2019-H-277
+evidence_name==증1호:변사자 임나린 구강키트
+request_org==경기도북부지방경찰청
+related_person==임나린
+case_number==2019-H-277
+evidence_name==증2호:화장실 바닥 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==임나린
+case_number==2019-H-277
+evidence_name==증3호:변사자 임나린 우측 허벅지 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==임나린
+case_number==2019-H-277
+evidence_name==증4호:변사자 임나린 우측 전완부 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==임나린
+case_number==2019-H-279
+evidence_name==증1호:출입구 바깥쪽 손잡이 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==김기화
+case_number==2019-H-279
+evidence_name==증2호:출입구 안쪽 손잡이 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==김기화
+case_number==2019-H-279
+evidence_name==증3호:출입문 앞 바닥 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==김기화
+case_number==2019-H-279
+evidence_name==증4호:출입문 측면(안쪽문틀) 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==김기화
+case_number==2019-H-289
+evidence_name==증1호:초록색 칫솔
+request_org==인천광역시지방경찰청
+related_person==한서영
+case_number==2019-H-289
+evidence_name==증2호:주황색 칫솔
+request_org==인천광역시지방경찰청
+related_person==한서영
+case_number==2019-H-290
+evidence_name==증1호:과도 날 채취 면봉
+request_org==인천광역시지방경찰청
+related_person==김원배
+case_number==2019-H-290
+evidence_name==증2호:과도 손잡이 채취 면봉
+request_org==인천광역시지방경찰청
+related_person==김원배
+case_number==2019-H-290
+evidence_name==증3호:향교빌라 앞 바닥 채취 면봉
+request_org==인천광역시지방경찰청
+related_person==김원배
+case_number==2019-H-290
+evidence_name==증4호:플라스틱 통 채취 면봉
+request_org==인천광역시지방경찰청
+related_person==김원배
+case_number==2019-H-290
+evidence_name==증5호:거실 바닥 채취 면봉
+request_org==인천광역시지방경찰청
+related_person==김원배
+case_number==2019-H-290
+evidence_name==증6호:소파 위 채취 면봉
+request_org==인천광역시지방경찰청
+related_person==김원배
+case_number==2019-H-290
+evidence_name==증7호:화장지(거실)
+request_org==인천광역시지방경찰청
+related_person==김원배
+case_number==2019-H-293
+evidence_name==증1호:행정실 외부창문 유리 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==윤석완
+case_number==2019-H-295
+evidence_name==증1호:구찌운동화 안쪽면 채취 면봉
+request_org==인천광역시지방경찰청
+related_person==이종열
+case_number==2019-H-296
+evidence_name==증1호:노랑색 박스테이프
+request_org==서울특별시지방경찰청
+related_person==탁승자
+case_number==2019-H-297
+evidence_name==증1호:쌍화탕병 입구 및 뚜껑 내측 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==이주원
+case_number==2019-H-305
+evidence_name==증1-a호:가위
+request_org==인천미추홀경찰서
+related_person==최희숙
+case_number==2019-H-305
+evidence_name==증1-b호:가위
+request_org==인천미추홀경찰서
+related_person==최희숙
+case_number==2019-H-321
+evidence_name==증1호:칼 날 표면 채취 면봉
+request_org==경기도남부지방경찰청
+related_person==이경미, 이명재, 이종국
+case_number==2019-H-321
+evidence_name==증2호:칼 손잡이 채취 면봉
+request_org==경기도남부지방경찰청
+related_person==이경미, 이명재, 이종국
+case_number==2019-H-321
+evidence_name==증3호:피해자 이종국 우수 손톱
+request_org==경기도남부지방경찰청
+related_person==이경미, 이명재, 이종국
+case_number==2019-H-321
+evidence_name==증4호:피해자 이종국 좌수 손톱
+request_org==경기도남부지방경찰청
+related_person==이경미, 이명재, 이종국
+case_number==2019-H-323
+evidence_name==증1-a호:과도 1점(주방 싱크대 위)
+request_org==인천광역시지방경찰청
+related_person==박경숙, 유인현
+case_number==2019-H-323
+evidence_name==증1-b호:과도 1점(주방 싱크대 위)
+request_org==인천광역시지방경찰청
+related_person==박경숙, 유인현
+case_number==2019-H-323
+evidence_name==증1-c호:과도 1점(주방 싱크대 위)
+request_org==인천광역시지방경찰청
+related_person==박경숙, 유인현
+case_number==2019-H-323
+evidence_name==증2호:작은방 침대 위 채취 면봉
+request_org==인천광역시지방경찰청
+related_person==박경숙, 유인현
+case_number==2019-H-323
+evidence_name==증3호:변사자 유인현 구강키트
+request_org==인천광역시지방경찰청
+related_person==박경숙, 유인현
+case_number==2019-H-323
+evidence_name==증4호:참고인 박경숙 구강키트
+request_org==인천광역시지방경찰청
+related_person==박경숙, 유인현
+case_number==2019-H-331
+evidence_name==증1호:피의자 송영경 구강키트
+request_org==경기도남부지방경찰청
+related_person==송영경, 최원석
+case_number==2019-H-357
+evidence_name==증1호:현관문 앞 바닥 채취 면봉
+request_org==서울금천경찰서
+related_person==김광수
+case_number==2019-H-357
+evidence_name==증2호:냉장고 앞 바닥 채취 면봉
+request_org==서울금천경찰서
+related_person==김광수
+case_number==2019-H-357
+evidence_name==증3호:거실 바닥 채취 면봉
+request_org==서울금천경찰서
+related_person==김광수
+case_number==2019-H-370
+evidence_name==증1호:컵라면 음용부위 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==김룡순, 원유빈
+case_number==2019-H-371
+evidence_name==증1호:런 요구르트병 입구 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==배문주
+case_number==2019-H-371
+evidence_name==증2호:런 요구르트병 입구 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==배문주
+case_number==2019-H-371
+evidence_name==증3호:런 요구르트병 입구 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==배문주
+case_number==2019-H-371
+evidence_name==증4호:런 요구르트병 입구 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==배문주
+case_number==2019-H-371
+evidence_name==증5호:던롭 화장품 겉면 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==배문주
+case_number==2019-H-374
+evidence_name==증1호:변사자 안순심 우수 손톱 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==안순심
+case_number==2019-H-374
+evidence_name==증2호:변사자 안순심 좌수 손톱 채취 면봉
+request_org==경기도북부지방경찰청
+related_person==안순심
+case_number==2019-H-374
+evidence_name==증3호:변사자 안순심 구강키트
+request_org==경기도북부지방경찰청
+related_person==안순심
+case_number==2019-H-392
+evidence_name==증1호:피해자 선유준효 안경테 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==선유준효
+case_number==2019-H-392
+evidence_name==증2호:피해자 선유준효 구강키트
+request_org==서울특별시지방경찰청
+related_person==선유준효
+case_number==2019-H-395
+evidence_name==증1호:변사자 박경화 구강키트
+request_org==서울특별시지방경찰청
+related_person==불상
+case_number==2019-H-395
+evidence_name==증2호:열려진 창문의 창틀 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==불상
+case_number==2019-H-395
+evidence_name==증3호:지팡이 손잡이 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==불상
+case_number==2019-H-403
+evidence_name==증1호:메모지 케이스 채취 면봉
+request_org==서울특별시지방경찰청
+related_person==강상희, 육동주
+case_number==2019-H-403
+evidence_name==증2호:볼펜 1점(선반대 위)
+request_org==서울특별시지방경찰청
+related_person==강상희, 육동주
+case_number==2019-H-408
+evidence_name==증1-a호:빈 주사기 1점
+request_org==서울특별시지방경찰청
+related_person==유은진, 조수진
+case_number==2019-H-408
+evidence_name==증1-b호:빈 주사기 1점
+request_org==서울특별시지방경찰청
+related_person==유은진, 조수진
+case_number==2019-H-408
+evidence_name==증2-1-a호:주사기 1점
+request_org==서울특별시지방경찰청
+related_person==유은진, 조수진
+case_number==2019-H-408
+evidence_name==증2-1-b호:주사기 1점
+request_org==서울특별시지방경찰청
+related_person==유은진, 조수진
+case_number==2019-H-408
+evidence_name==증2-2호:주사바늘 1점
+request_org==서울특별시지방경찰청
+related_person==유은진, 조수진
+case_number==2019-H-408
+evidence_name==증2-3호:주사바늘 1점
+request_org==서울특별시지방경찰청
+related_person==유은진, 조수진
+case_number==2019-H-408
+evidence_name==증3-1-a호:빈 주사기 6점
+request_org==서울특별시지방경찰청
+related_person==유은진, 조수진
+case_number==2019-H-408
+evidence_name==증3-1-b호:빈 주사기 6점
+request_org==서울특별시지방경찰청
+related_person==유은진, 조수진
+case_number==2019-H-408
+evidence_name==증3-2-a호:빈 주사기 6점
+request_org==서울특별시지방경찰청
+related_person==유은진, 조수진
+

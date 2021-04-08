@@ -32,7 +32,7 @@ public class PDF_IO {
 
 Barcode_read_write Barcode_IO = new  Barcode_read_write();
 
-PDPageContentStream pdf_cont_strm =null;
+PDPageContentStream pdf_cont_strm ;
 
 public float a4_landscap_width = PDRectangle.A4.getHeight();
 public float a4_landscap_height = PDRectangle.A4.getWidth();
@@ -55,7 +55,11 @@ public ArrayList <String>  request_org = new ArrayList<>();
 public ArrayList <String> related_person = new ArrayList<>();
 
 PDImageXObject code_39_bit_img = null, qr_bit_img=null;
-    
+
+InputStream font_stream ;
+PDType0Font font_batang ;
+ PDDocument pdf_doc;
+ 
 private void add_code_39_img_to_pdf(PDDocument input_pdf,  String input_str, int width, int height, int pos_x, int pos_y){
     try{
         BufferedImage new_qr_bit_mat = Barcode_IO.generate_code_39_buff_img(input_str, width,  height);
@@ -122,8 +126,7 @@ private void add_each_inf(PDDocument input_pdf, int input_number) throws IOExcep
    
    add_qr_img_to_pdf(input_pdf, case_number.get(input_number), qr_size, qr_size,hor_pos,ver_pos-qr_size);
    
-   InputStream font_stream = new FileInputStream("C:/Windows/Fonts/Malgun.ttf");
-   PDType0Font font_batang=   PDType0Font.load(input_pdf, font_stream, true);
+
 //   PDFont font_batang = PDType1Font.HELVETICA;  
    pdf_cont_strm.setFont(font_batang, font_size); 
    pdf_cont_strm.beginText();
@@ -141,20 +144,20 @@ private void add_each_inf(PDDocument input_pdf, int input_number) throws IOExcep
    pdf_cont_strm.endText();
 }
 
-private void initialize_pdf_new_page(PDDocument input_pdf){
+private void initialize_pdf_new_page( ){
    PDPage pdf_page = new PDPage(new PDRectangle(a4_landscap_width,a4_landscap_height));
    
    // pdf_page.setRotation(90);
-   input_pdf.addPage(pdf_page);
+   pdf_doc.addPage(pdf_page);
    try {
-   pdf_cont_strm = new PDPageContentStream(input_pdf, pdf_page);
+   pdf_cont_strm = new PDPageContentStream(pdf_doc, pdf_page);
  
    // add QRCode 
    
-   add_code_39_img_to_pdf(input_pdf, "TL", code_39_width,  code_39_height, (int) margin ,(int) a4_landscap_height- code_39_height- margin);
-   add_code_39_img_to_pdf(input_pdf, "TR", code_39_width,  code_39_height, (int) a4_landscap_width - margin- code_39_width-10,  (int) a4_landscap_height- code_39_height- margin);
-   add_code_39_img_to_pdf(input_pdf, "BL", code_39_width,  code_39_height, (int) margin, (int) margin);
-   add_code_39_img_to_pdf(input_pdf, "BR", code_39_width,  code_39_height,(int) a4_landscap_width - margin-code_39_width-10,(int)margin);
+   add_code_39_img_to_pdf(pdf_doc, "TL", code_39_width,  code_39_height, (int) margin ,(int) a4_landscap_height- code_39_height- margin);
+   add_code_39_img_to_pdf(pdf_doc, "TR", code_39_width,  code_39_height, (int) a4_landscap_width - margin- code_39_width-10,  (int) a4_landscap_height- code_39_height- margin);
+   add_code_39_img_to_pdf(pdf_doc, "BL", code_39_width,  code_39_height, (int) margin, (int) margin);
+   add_code_39_img_to_pdf(pdf_doc, "BR", code_39_width,  code_39_height,(int) a4_landscap_width - margin-code_39_width-10,(int)margin);
    draw_guide_lines();
    
    } 
@@ -208,7 +211,9 @@ private void initialize_pdf_new_page(PDDocument input_pdf){
     }
 
 public  void add_qr_to_PDF(String input_file)throws IOException{
- PDDocument pdf_doc= new PDDocument();
+ pdf_doc= new PDDocument();
+ font_stream = new FileInputStream("C:/Windows/Fonts/Malgun.ttf");
+ font_batang=   PDType0Font.load(pdf_doc, font_stream, true);
 
   try{
         for (int current_number=0 ; current_number<case_number.size() ; current_number++){
@@ -216,7 +221,7 @@ public  void add_qr_to_PDF(String input_file)throws IOException{
                 if (current_number>0){
                     pdf_cont_strm.close();
                 }
-                initialize_pdf_new_page(pdf_doc);
+                initialize_pdf_new_page();
             }
             add_each_inf(pdf_doc, current_number);
         }
