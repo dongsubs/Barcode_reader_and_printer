@@ -16,7 +16,7 @@ this can get the barcode information from the picture
 - opensource libraries used in this program and Licenses
 
 1. Zxing of google (Apache License version 2))
-
+2. PDFBox of Apache (Apache License version 2)
 
 - Development environment and Licenses
 
