@@ -1,7 +1,7 @@
 # Barcode_reader_and_printer
 this can get the barcode information from the picture 
 
-- developed by Lee, Dong Sub (이동섭) 2021
+- developed by Lee, DongSub (이동섭) 2021
 - Free and opensource software, so my own developed code is released as MIT license
 - everyone can use my own developed code freely but there is no warranty or legal responsibility to me at any conditions.
 
